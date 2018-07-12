@@ -36,7 +36,7 @@ class TestDataSeeder extends Seeder
             'linked_in' => 'some LinkedIn URL',
             'skype' => 'Some Skype',
             'about_text' => $faker->text(700),
-            'photo' => $faker->imageUrl(640, 480, 'business'),
+            'photo' => '/img/photo.png',
             'created_at' => new DateTime("now")
         ]);
 

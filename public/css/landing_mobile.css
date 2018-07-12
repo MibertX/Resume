@@ -1,0 +1,25 @@
+body {font-size: 10pt;}
+
+#landing-container {
+    max-width: 767px;
+    min-width: 480px;
+}
+
+#menu-slider {
+    left: 0;
+    width: 100%;
+    min-width: 480px;
+    top: -100%;
+    border-right: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+    height: inherit;
+    max-height: 100%;
+}
+
+#menu-header {padding: 20px 70px;}
+
+#header {clip-path: none;}
+
+.carousel-caption {font-size: 1.5em;}
+
+#carousel-button {display: none;}
