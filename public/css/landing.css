@@ -308,7 +308,7 @@ body {
 }
 
 #user-card-section {
-    background: fixed url('/img/1.jpg') center no-repeat;
+    background: fixed url('/img/user_card_background.jpg') center no-repeat;
     background-size: cover;
     -webkit-transform: translate3d(0,0,0);
     -webkit-backface-visibility: hidden;

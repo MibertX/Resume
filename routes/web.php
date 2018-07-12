@@ -1,4 +1,4 @@
 <?php
-Route::get('/test', array(
+Route::get('/', array(
     'uses' => 'LandingController@index'
 ));
