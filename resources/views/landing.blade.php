@@ -28,9 +28,12 @@
           href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
           integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
           crossorigin="anonymous">
+    <link href="/jquery_plugins/timeline/css/timeline.min.css" rel="stylesheet">
+    <script src="/jquery_plugins/timeline/js/timeline.min.js" type="text/javascript"></script>
+
     <link rel="stylesheet" href="/css/landing.css">
     <link rel="stylesheet" type="text/css"
-          media="only screen and (max-width: 720px), only screen and (max-device-width: 480px)"
+          media="only screen and (max-width: 767px), only screen and (max-device-width: 480px)"
           href="/css/landing_mobile.css" />
     <script src="/js/landing.js"></script>
 </head>
@@ -66,14 +69,14 @@
                     <span class="menu-icon">
                         <i class="fas fa-code-branch"></i>
                     </span>
-                    <a href="#">Work Experience</a>
+                    <a href="#work-experience-section">Work Experience</a>
                 </li>
 
                 <li>
                     <span class="menu-icon">
                         <i class="fas fa-graduation-cap"></i>
                     </span>
-                    <a href="#">Education</a>
+                    <a href="#education-section">Education</a>
                 </li>
 
                 <li>
@@ -148,6 +151,7 @@
         </header>
 
         @include('about', array('user' => $user))
+        @include('timelines', array('timelineItemsByType' => $timelineItemsByType))
     </div>
 </body>
 </html>

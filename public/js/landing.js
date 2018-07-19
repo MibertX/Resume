@@ -10,8 +10,7 @@ function scrollToElement($element)
 function fixCardPhotoPosition()
 {
     var $userCardPhoto = $('#user-card-photo');
-    console.log($userCardPhoto.parent().height());
-    console.log($userCardPhoto.outerHeight());
+
     if ($userCardPhoto.outerHeight(true) < $userCardPhoto.parent().height()) {
         $userCardPhoto.stop().css('position', 'absolute')
     } else {
@@ -118,4 +117,13 @@ $(document).ready(function () {
 
         fixCardPhotoPosition();
     })
+    
+    $(function(){
+        jQuery('.timeline').timeline({
+            mode: 'horizontal',
+            visibleItems: 3,
+            moveItems: 2,
+            forceVerticalMode: 767
+        });
+    });
 });

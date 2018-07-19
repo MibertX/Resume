@@ -23,3 +23,21 @@ body {font-size: 10pt;}
 .carousel-caption {font-size: 1.5em;}
 
 #carousel-button {display: none;}
+
+.timeline--mobile .timeline__item {
+    padding-left: 40px;
+}
+
+.timeline--mobile {
+    margin: 20px;
+}
+
+.timeline--mobile .timeline__item .timeline__content {
+    margin: 0;
+}
+
+.timeline--mobile .timeline__item .timeline__content:after,
+.timeline--mobile .timeline__item .timeline__content:before {
+    border-color: transparent;
+    border-right-color: #353541;
+}
