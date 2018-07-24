@@ -30,6 +30,8 @@
           crossorigin="anonymous">
     <link href="/jquery_plugins/timeline/css/timeline.min.css" rel="stylesheet">
     <script src="/jquery_plugins/timeline/js/timeline.min.js" type="text/javascript"></script>
+    <script src="/jquery_plugins/skills_bar/js/skill.bars.jquery.js"></script>
+    <link href="/jquery_plugins/skills_bar/css/style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/landing.css">
     <link rel="stylesheet" type="text/css"
@@ -83,7 +85,7 @@
                     <span class="menu-icon">
                         <i class="far fa-chart-bar"></i>
                     </span>
-                    <a href="#">Skills</a>
+                    <a href="#skills-section">Skills</a>
                 </li>
 
                 <li>
@@ -152,6 +154,7 @@
 
         @include('about', array('user' => $user))
         @include('timelines', array('timelineItemsByType' => $timelineItemsByType))
+        @include('skills', array('skills' => $skills))
     </div>
 </body>
 </html>

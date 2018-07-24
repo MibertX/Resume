@@ -14,8 +14,9 @@ class TestDataSeeder extends Seeder
     protected $skills = [
         'Laravel', 'PHP', 'JavaScript',
         'MySQL', 'HTML', 'CSS',
-        'Symphony', 'Doctrine', 'JQuery'
+        'Symfony', 'Doctrine', 'JQuery'
     ];
+
     protected $timelineTypes = [
         'work', 'education'
     ];
@@ -42,7 +43,9 @@ class TestDataSeeder extends Seeder
 
         foreach ($this->skills as $skill) {
             DB::table('skills')->insert([
-                'name' => $skill
+                'name' => $skill,
+                'mastery_in_percent' => rand(50, 95),
+                'icon_path' => '/img/icons/' . strtolower($skill) . '.png'
             ]);
         }
 

@@ -5,7 +5,7 @@ function scrollToElement($element)
             scrollTop: ($element.offset().top)
         },500)
     }
- }
+}
 
 function fixCardPhotoPosition()
 {
@@ -18,10 +18,55 @@ function fixCardPhotoPosition()
     }
 }
 
+function runUserCardAnimation()
+{
+    var $userCard = $('#user-card');
+    var scrollToUserCard = $('#user-card-anchor').offset().top - $(window).height();
+    var userCardSocialHeight = $('#user-card-social').outerHeight(true) + 'px';
+
+    if($(window).scrollTop() > scrollToUserCard && $userCard.css('bottom') != '-' + userCardSocialHeight){
+        $userCard.animate({
+            'bottom': '-' + userCardSocialHeight,
+            'opacity': 1
+        }, 1000)
+    }
+}
+
+function runSkillBarsAnimation()
+{
+    var skillsSection = $('#skills-section');
+    var alreadyAnimated =false;
+
+    skillsSection.find('.skillbar-bar').each(function() {
+        if ($(this).width() > 0) {
+            alreadyAnimated = true;
+            return false;
+        }
+    });
+
+    if (alreadyAnimated) return false;
+
+    var scrollToSkills = 0;
+    skillsSection.prevAll('section').each(function () {
+        scrollToSkills += $(this).height();
+    });
+
+    if ($(window).scrollTop() > scrollToSkills) {
+        $('.skillbar').skillBars();
+        return true;
+    }
+
+    return false;
+}
+
 $(document).ready(function () {
     var MENU_IS_OPEN = false;
     var $menuButton = $('#menu-button');
     var $menuSlider = $('#menu-slider');
+
+    fixCardPhotoPosition();
+    runSkillBarsAnimation();
+    runUserCardAnimation();
 
     $menuSlider.css('left', '-' + $menuSlider.outerWidth(true) + 'px');
 
@@ -68,22 +113,9 @@ $(document).ready(function () {
         event.preventDefault();
     });
 
-    var $userCardSocial = $('#user-card-social');
-    var $userCard = $('#user-card');
-
-    var target = $('#user-card-anchor');
-    var targetPos = target.offset().top;
-    var winHeight = $(window).height();
-    var scrollToElem = targetPos - winHeight;
-    $(window).scroll(function(){
-        var winScrollTop = $(this).scrollTop();
-        var userCardSocialHeight = $userCardSocial.outerHeight(true) + 'px';
-        if(winScrollTop > scrollToElem && $userCard.css('bottom') != '-' + userCardSocialHeight){
-            $userCard.animate({
-                'bottom': '-' + userCardSocialHeight,
-                'opacity': 1
-            }, 1000)
-        }
+    $(window).scroll(function() {
+        runUserCardAnimation();
+        runSkillBarsAnimation();
     });
 
     $('#menu-list').find('li').on('click', function () {
@@ -91,9 +123,7 @@ $(document).ready(function () {
         scrollToElement($(href));
         event.preventDefault();
     });
-
-    fixCardPhotoPosition();
-
+    
     $(window).resize(function() {
         if ($(window).width() < 768) {
             $menuButton.css("left", 0);
@@ -116,7 +146,7 @@ $(document).ready(function () {
         }
 
         fixCardPhotoPosition();
-    })
+    });
     
     $(function(){
         jQuery('.timeline').timeline({

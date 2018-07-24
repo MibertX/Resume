@@ -10,6 +10,8 @@ class CreateSkillsTable extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique()->index();
+            $table->integer('mastery_in_percent')->unsigned();
+            $table->string('icon_path');
         });
     }
 
