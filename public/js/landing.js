@@ -11,7 +11,7 @@ function fixCardPhotoPosition()
 {
     var $userCardPhoto = $('#user-card-photo');
 
-    if ($userCardPhoto.outerHeight(true) < $userCardPhoto.parent().height()) {
+    if (Math.floor($userCardPhoto.outerHeight(true)) < Math.floor($userCardPhoto.parent().height())) {
         $userCardPhoto.stop().css('position', 'absolute')
     } else {
         $userCardPhoto.stop().css('position', 'relative');

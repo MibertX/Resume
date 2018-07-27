@@ -14,6 +14,12 @@ body {
     height: 100%;
 }
 
+@media (max-width: 1400px) {
+    body {
+        font-size:10pt;
+    }
+}
+
 .align-center {text-align: center;}
 
 #landing-container {
@@ -224,15 +230,15 @@ body {
 }
 
 .carousel-caption {
-    top: 25%;
+    top: 12%;
     font: 2.4em caption;
     letter-spacing: 0.1em;
 }
 
 @media (max-width: 1400px){
     .carousel-caption {
-        top: 12%;
-        font-size: 2em
+        top: 0;
+        font-size: 1.7em
     }
 }
 
@@ -253,13 +259,9 @@ body {
 #carousel-button-wrapper {
     display: table;
     position: absolute;
-    top: 60%;
+    top: 70%;
     width: 100%;
     text-align: center;
-}
-
-@media (max-width: 1400px) {
-    #carousel-button-wrapper {top: 70%;}
 }
 
 #carousel-button,

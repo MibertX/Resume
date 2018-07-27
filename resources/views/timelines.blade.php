@@ -10,25 +10,27 @@
     @endif
 
     <section id="{{$sectionId}}">
-        <div class="row">
-            <div class="col-12 align-center">
-                <h2 class="section-title">{{$sectionTitle}}</h2>
-                <div class="section-title-underline"></div>
-            </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 align-center">
+                    <h2 class="section-title">{{$sectionTitle}}</h2>
+                    <div class="section-title-underline"></div>
+                </div>
 
-            <div class="col-12">
-                <div class="timeline">
-                    <div class="timeline__wrap">
-                        <div class="timeline__items">
-                            @foreach($timelineItems as $timelineItem)
-                                <div class="timeline__item">
-                                    <div class="timeline__content">
-                                        <h2 class="timeline-title">{{$timelineItem->title}}</h2>
-                                        <h2 class="timeline-period">{{$timelineItem->formatted_period_date}}</h2>
-                                        <p class="timeline-text">{{$timelineItem->text}}</p>
+                <div class="col-12">
+                    <div class="timeline">
+                        <div class="timeline__wrap">
+                            <div class="timeline__items">
+                                @foreach($timelineItems as $timelineItem)
+                                    <div class="timeline__item">
+                                        <div class="timeline__content">
+                                            <h2 class="timeline-title">{{$timelineItem->title}}</h2>
+                                            <h2 class="timeline-period">{{$timelineItem->formatted_period_date}}</h2>
+                                            <p class="timeline-text">{{$timelineItem->text}}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
