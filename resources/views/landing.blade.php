@@ -155,6 +155,7 @@
         @include('about', array('user' => $user))
         @include('timelines', array('timelineItemsByType' => $timelineItemsByType))
         @include('skills', array('skills' => $skills))
+        @include('hireMe')
     </div>
 </body>
 </html>
