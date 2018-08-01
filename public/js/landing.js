@@ -1,3 +1,9 @@
+toastr.options = {
+    "closeButton": true,
+    "positionClass": "toast-bottom-right",
+    "preventDuplicates": true
+};
+
 function scrollToElement($element)
 {
     if ($element.length != 0) {
@@ -119,8 +125,14 @@ $(document).ready(function () {
     });
 
     $('#menu-list').find('li').on('click', function () {
-        var href = $(this).find('a').first().attr("href");
-        scrollToElement($(href));
+        var elementIdByHref = $(this).find('a').first().attr("href");
+        scrollToElement($(elementIdByHref));
+        event.preventDefault();
+    });
+
+    $('#carousel-button').on('click', function () {
+        var elementIdByHref = $(this).attr("href");
+        scrollToElement($(elementIdByHref));
         event.preventDefault();
     });
     
@@ -156,4 +168,64 @@ $(document).ready(function () {
             forceVerticalMode: 767
         });
     });
+
+    var $feedbackForm = $('#feedback-form');
+    $feedbackForm.find('button[type="submit"]').on('click', function() {
+        event.preventDefault();
+        var $feedbackFormFields = $feedbackForm.find('input.form-input, textarea.form-textarea');
+        var feedbackFormData = {
+            '_token': $feedbackForm.find('input[name="_token"]').val()
+        };
+
+        $feedbackFormFields.each(function() {
+            var $feedbackFormField = $(this);
+            feedbackFormData[$feedbackFormField.attr('name')] = $feedbackFormField.val();
+        });
+
+        $feedbackForm.waitMe({
+            effect : 'roundBounce',
+            text : '',
+            bg : "transparent",
+            color : "#fb6470"
+        });
+
+        $feedbackForm.addClass('inactive');
+
+        setTimeout(function() {
+            $.post({
+                'url': $feedbackForm.attr('action'),
+                'data': feedbackFormData,
+                'success': function() {
+                    toastr.success('Your message was delivered. I will contact you by email.');
+                    $feedbackForm.find("p.error-message").remove();
+
+                    $feedbackFormFields.each(function() {
+                        $(this).val(null);
+                    })
+                },
+                'error': function(data) {
+                    $feedbackForm.find("p.error-message").remove();
+                    var errors = data['responseJSON']['errors'];
+
+                    if (typeof errors === "undefined") {
+                        toastr.error(data['responseJSON']['message'] || 'Unexpected server error');
+                    } else {
+                        $feedbackFormFields.each(function () {
+                            var $feedbackFormField = $(this);
+                            var currentFormInputError = errors[$feedbackFormField.attr('name')];
+                            if (typeof currentFormInputError !== 'undefined') {
+                                $feedbackFormField.after(function () {
+                                    return "<p class='error-message'>" + currentFormInputError[0] + "</p>"
+                                });
+                            }
+                        })
+                    }
+                },
+                'complete': function() {
+                    $feedbackForm.waitMe('hide').removeClass('inactive');
+                }
+            })
+        }, 500)
+        
+    })
 });

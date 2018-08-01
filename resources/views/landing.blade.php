@@ -19,19 +19,28 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
           crossorigin="anonymous">
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
             integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
             crossorigin="anonymous">
     </script>
+
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
           integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
           crossorigin="anonymous">
+
     <link href="/jquery_plugins/timeline/css/timeline.min.css" rel="stylesheet">
     <script src="/jquery_plugins/timeline/js/timeline.min.js" type="text/javascript"></script>
+
     <script src="/jquery_plugins/skills_bar/js/skill.bars.jquery.js"></script>
     <link href="/jquery_plugins/skills_bar/css/style.css" rel="stylesheet">
+
+    <script src="/jquery_plugins/toastr/js/toastr.min.js"></script>
+    <link href="/jquery_plugins/toastr/css/toastr.min.css" rel="stylesheet">
+
+    <script src="/jquery_plugins/wait_me/js/wait_me.min.js"></script>
+    <link href="/jquery_plugins/wait_me/css/wait_me.min.css" rel="stylesheet">
+
 
     <link rel="stylesheet" href="/css/landing.css">
     <link rel="stylesheet" type="text/css"
@@ -99,7 +108,7 @@
                     <span class="menu-icon">
                         <i class="fas fa-handshake"></i>
                     </span>
-                    <a href="#">Hire me</a>
+                    <a href="#feedback-section">Hire me</a>
                 </li>
             </ul>
         </div>
@@ -136,7 +145,7 @@
                 </div>
 
                 <div id="carousel-button-wrapper">
-                    <a id="carousel-button" href="#">
+                    <a id="carousel-button" href="#feedback-section">
                         Hire Me
                     </a>
                 </div>
@@ -155,6 +164,14 @@
         @include('about', array('user' => $user))
         @include('timelines', array('timelineItemsByType' => $timelineItemsByType))
         @include('skills', array('skills' => $skills))
+        @include('feedback', array('user' => $user))
+
+        <footer id="footer">
+            <div id="footer-separator"></div>
+            <p id="copyright">
+                &copy; Illya Kazmirchuk. All rights reserved.
+            </p>
+        </footer>
     </div>
 </body>
 </html>

@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\TimelineItem;
 use App\Models\Skill;
+use App\Models\Feedback;
+use App\Http\Requests\StoreFeedbackRequest;
 
 class LandingController extends Controller
 {
@@ -13,6 +15,20 @@ class LandingController extends Controller
 			'skills' => Skill::all(),
 			'timelineItemsByType' => self::getTimelineItemsByType() ?: array()
 		));
+	}
+
+	public function storeFeedback(StoreFeedbackRequest $request)
+	{
+		$validatedInputs = $request->validated();
+		$feedback = new Feedback();
+
+		foreach ($validatedInputs as $fieldName => $value) {
+			$feedback->{$fieldName} = $value;
+		}
+
+		if ($feedback->save()) return response()->json(['message' => 'Your message was delivered. I will contact you by email.'], 200);
+
+		return response()->json(['message' => 'There was some server error. Try please later'], 500);
 	}
 
 	public static function getTimelineItemsByType()
